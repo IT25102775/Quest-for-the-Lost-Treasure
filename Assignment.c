@@ -1,10 +1,12 @@
+/* IT25102775 */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
 #include <time.h>
 
-/* ---------------------------- Constants -------------------------------- */
+/* Constants */
 #define GRID_SIZE      15
 #define MAX_PLAYERS    3
 #define WALLS          30
@@ -28,7 +30,7 @@
 #define SYM_DOOR     'D'
 #define SYM_EMPTY    ' '
 
-/* ---------------------------- Structs ----------------------------------- */
+/* Structs  */
 typedef struct {
     char name[30];
     int  x, y;
@@ -52,7 +54,7 @@ typedef struct {
     char message[100];
 } LogEntry;
 
-/* ---------------------------- Globals ------------------------------------ */
+/*  Globals  */
 char   map[GRID_SIZE][GRID_SIZE];
 int    hiddenTrap[GRID_SIZE][GRID_SIZE];   
 
@@ -64,7 +66,7 @@ int      logCount = 0;
 
 int roundCounter = 1;
 
-/* ---------------------------- Prototypes ---------------------------------*/
+/*  Prototypes */
 void   initializeMap(void);
 void   placeWalls(void);
 void   placeTreasures(void);
@@ -611,7 +613,7 @@ void gameLoop(void) {
         if (inputEOF) break;
     }
 
-    /* ----- End of game ----- */
+    /* End of game */
     printMap();
     if (remainingTreasures() == 0) {
         printf("\n*** All treasures have been collected! Game over. ***\n");
