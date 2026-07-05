@@ -121,6 +121,7 @@ void readLine(char *buf, int size) {
     }
 }
 
+/*  MAP INITIALISATION */
 
 int tileIsFree(int x, int y) {
     return map[x][y] == SYM_EMPTY && hiddenTrap[x][y] == 0;
@@ -241,6 +242,7 @@ void placePlayers(void) {
     }
 }
 
+/*  DISPLAY */
 
 void printMap(void) {
     int r, c, i;
@@ -276,6 +278,8 @@ void printMap(void) {
     printRecentLog();
     printf("\n");
 }
+
+/*  EVENT LOG (Part B) */
 
 void addLog(int r, const char *m) {
     int idx = logCount % LOG_SIZE;
@@ -460,6 +464,8 @@ void movePlayer(int index) {
     }
 }
 
+/*  END CONDITIONS */
+
 int remainingTreasures(void) {
     int r, c, count = 0;
     for (r = 0; r < GRID_SIZE; r++)
@@ -473,6 +479,8 @@ int allEliminated(void) {
         if (players[i].health > 0) return 0;
     return 1;
 }
+
+/*  SCORING / STATS */
 
 void showScores(void) {
     int order[MAX_PLAYERS];
@@ -534,6 +542,8 @@ void showStats(void) {
     printf("=======================================================\n");
 }
 
+/*  SAVE / LOAD */
+
 void saveGame(void) {
     FILE *fp = fopen(SAVE_FILE, "wb");
     if (!fp) {
@@ -584,6 +594,9 @@ int loadGame(void) {
     printf("Game loaded from %s\n", SAVE_FILE);
     return 1;
 }
+
+
+/*  GAME LOOP  */
 
 void gameLoop(void) {
     char resp[8];
@@ -686,6 +699,8 @@ int mainMenu(void) {
     if (inputEOF) return 3;
     return atoi(buf);
 }
+
+/*  MAIN */
 
 int main(void) {
     srand((unsigned int)time(NULL));
